@@ -85,5 +85,16 @@ list files to modify
 /etc/freeradius/3.0/mods-config/sql/main/mysql/queries.conf
 ```
 
+### Modify /etc/freeradius/3.0/clients.conf
 
+Add the following lines before #IPv6 Client
 
+```
+client tplink {
+        ipaddr = 192.168.0.1
+        secret = goodtogreat
+}
+
+```
+
+### Modify /etc/freeradius/3.0/sites-available/default
