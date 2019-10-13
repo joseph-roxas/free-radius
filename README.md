@@ -69,4 +69,21 @@ Allow the server to write to the accounting and post-auth logging table.
 GRANT ALL on radius.radacct TO 'radius'@'localhost';
 GRANT ALL on radius.radpostauth TO 'radius'@'localhost';
 ```
+## Step 4. Edit Free Radius Files
+
+list files to modify
+
+```
+/etc/freeradius/3.0/clients.conf
+/etc/freeradius/3.0/sites-available/default
+/etc/freeradius/3.0/sites-available/inner-tunnel
+/etc/freeradius/3.0/mods-available/sql
+/etc/freeradius/3.0/mods-available/eap
+/etc/freeradius/3.0/mods-config/sql/counter/mysql/noresetcounter.conf
+/etc/freeradius/3.0/dictionary
+/etc/freeradius/3.0/mods-available/sqlcounter
+/etc/freeradius/3.0/mods-config/sql/main/mysql/queries.conf
+```
+
+
 
