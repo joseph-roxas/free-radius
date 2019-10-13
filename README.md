@@ -92,7 +92,7 @@ Add the following lines before #IPv6 Client
 ```
 client tplink {
         ipaddr = 192.168.0.1
-        secret = goodtogreat
+        secret = testing123
 }
 
 ```
