@@ -1,7 +1,7 @@
 # Free Radius
 Free Radius Installation Guide in Ubuntu 18.04
 
-Step 1. Install MySQL server and run security setting.
+## Step 1. Install MySQL server and run security setting.
 
 ```
 $ sudo su
@@ -10,14 +10,14 @@ $ sudo su
 # mysql_secure_installation
 ```
 
-Step 2. Install freeradius
+## Step 2. Install freeradius
 
 ```
 $ sudo su
 # apt-get install freeradius openssl freeradius-common freeradius-mysql freeradius-utils
 ```
 
-Step 3. Configure MySQL
+## Step 3. Configure MySQL
 
 Create "radius" database
 
