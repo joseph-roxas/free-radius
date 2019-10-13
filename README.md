@@ -44,7 +44,7 @@ $ sudo su
 # mysql -u root -p radius < schema.sql
 ```
 
-Create "radius" user
+Create default administrator for radius database
 
 Open up the MySQL shell
 
