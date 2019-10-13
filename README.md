@@ -21,6 +21,23 @@ $ sudo su
 
 Create "radius" database
 
+Open up MySQL shell
+
+```
+$ mysql -u root -p
+```
+Enter root password
+
+```
+mysql> CREATE DATABASE radius;
+```
+Exit MySQL shell
+
+```
+msql> quit; 
+```
+Navigate to MySQL config files and run radius database schema
+
 ```
 $ sudo su
 # cd /etc/freeradius/3.0/mods-config/sql/main/mysql/
