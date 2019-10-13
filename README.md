@@ -1,2 +1,2 @@
-# free-radius
+# Free Radius
 Free Radius Installation Guide
