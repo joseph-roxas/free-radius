@@ -4,11 +4,11 @@ import serialconn
 
 def account(time):
     if time == 6:
-        path = "./request_account_6hrs.sh"
+        path = "/home/joseph/Scripts/request_account_6hrs.sh"
     if time == 12:
-        path = "./request_account_12hrs.sh"
+        path = "/home/joseph/Scripts/request_account_12hrs.sh"
     if time == 24:
-        path = "./request_account_24hrs.sh"
+        path = "/home/joseph/Scripts/request_account_24hrs.sh"
 
     rc = subprocess.check_output(path).decode("utf-8")
     out = re.findall(r"[\w']+", rc)
