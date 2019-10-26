@@ -112,6 +112,12 @@ and
 ```
 sql
 ```
+Add `noresetcounter` after `sql`
+```
+sql
+noresetcounter
+```
+
 Under `authenticate {}` section make sure to uncomment:
 ```
 eap
@@ -126,11 +132,16 @@ Under the `post-auth {}` section uncomment the `sql` line.
 
 Under the `post-auth {}` section, under the `Post-Auth-Type REJECT {}` uncomment the `sql` line.
 
+
 ### Modify /etc/freeradius/3.0/sites-available/inner-tunnel
 
 This is a virtual server that handles only inner tunnel requests for EAP-TTLS and PEAP types.
 
-Under `authorize {}` make sure both `sql` and `eap {..}` are uncommented.
+Under `authorize {}` make sure both `sql` and `eap {..}` are uncommented. Add `noresetcounter` after `sql`
+```
+sql
+noresetcounter
+```
 
 Under `authenticate {}` make sure `eap` is uncommented.
 
