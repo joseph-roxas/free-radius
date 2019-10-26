@@ -240,3 +240,68 @@ To enable the SQL module make sure /etc/freeradius/3.0/mods-enabled/sql is exist
 ```
 $ ln -s /etc/freeradius/3.0/mods-available/eap /etc/freeradius/3.0/mods-enabled/eap
 ```
+
+### Modify /etc/freeradius/3.0/mods-config/sql/counter/mysql/noresetcounter.conf
+This is the configuration file:
+```
+query = "\
+        SELECT IFNULL( MAX(TIME_TO_SEC(TIMEDIFF(NOW(), authdate))),0) \
+        FROM radpostauth \
+        WHERE username='%{${key}}' AND reply = 'Access-Accept' \
+        ORDER BY authdate desc \
+        LIMIT 1;"
+```
+
+### Modify /etc/freeradius/3.0/mods-available/
+
+Under section `noresetcounter` set `mysql` as dialect.
+```
+sqlcounter noresetcounter {
+        dialect = mysql
+}
+```
+Under section `expire_on_login` set `mysql` as dialect.
+```
+sqlcounter expire_on_login {
+        dialect = mysql
+}
+```
+
+### Modify /etc/freeradius/3.0/mods-config/sql/main/mysql/queries.conf
+
+Modify the Simultaneous Use Checking Query
+```
+#######################################################################
+# Simultaneous Use Checking Queries
+#######################################################################
+
+simul_count_query = "\
+        SELECT COUNT(*) \
+        FROM ${postauth_table} \
+        WHERE   username = '%{SQL-User-Name}' \
+                AND reply = 'Access-Accept'  \
+        "
+```
+
+Under `post-auth` section modify the `query` subsection
+```
+post-auth {
+        query = "\
+                INSERT INTO ${..postauth_table} \
+                        (username, pass, reply, authdate, nasipaddress, macaddress) \
+                VALUES ( \
+                        '%{SQL-User-Name}', \
+                        '%{%{User-Password}:-%{Chap-Password}}', \
+                        '%{reply:Packet-Type}', \
+                        '%S', \
+                        '%{NAS-IP-Address}', \
+                        '%{NAS-Ip-Address}')"
+}
+```
+
+### Modify /etc/freeradius/3.0/dictionary
+
+Add `Max-All-Sesion` attribute
+```
+ATTRIBUTE       Max-All-Session         3003    integer
+```
