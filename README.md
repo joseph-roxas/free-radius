@@ -316,3 +316,16 @@ Add `Max-All-Sesion` attribute
 ```
 ATTRIBUTE       Max-All-Session         3003    integer
 ```
+## Step 5. Run Freeradius Server
+
+```
+sudo su
+freeradius -X
+```
+
+To stop Freeradius Server
+
+```
+sudo su
+service freeradius stop
+```
