@@ -9,6 +9,10 @@ def account(time):
         path = "/home/joseph/Scripts/request_account_12hrs.sh"
     if time == 24:
         path = "/home/joseph/Scripts/request_account_24hrs.sh"
+    if time == 72:
+        path = "/home/joseph/Scripts/request_account_3days.sh"
+    if time == 168:
+        path = "/home/joseph/Scripts/request_account_7days.sh"
 
     rc = subprocess.check_output(path).decode("utf-8")
     out = re.findall(r"[\w']+", rc)
