@@ -31,7 +31,7 @@ VALUES
 	@random_chars,
 	"Max-All-Session",
 	":=",
-	"604800"
+	"259200"
 	),
 	(
 	@random_chars,
