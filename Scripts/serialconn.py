@@ -16,8 +16,13 @@ def connect(username, password, time):
 
     now  =  datetime.now()
     dt_string = now.strftime("%m-%d-%Y %H:%M:%S")
-    connection_time_string = "Time: " + str(time) +" Hours"
-    
+    if time < 24:
+        connection_time_string = "Time: " + str(time) +" Hours"
+    elif time == 24:
+        connection_time_string = "Time: 1 Day"
+    else:
+        connection_time_string = "Time: " + str(int(time/24)) +" Days"
+
     L0 = [ 0x1b, 0x40, 0x1b, 0x61, 0x01 ]
     L1 = "Thank you for choosing AIR FIBRE".encode()
     L2 = [ 0x0d, 0x0a, 0x0a ]
@@ -35,7 +40,7 @@ def connect(username, password, time):
 
     L12 = connection_time_string.encode()
     L13 = [ 0x0d, 0x0a ]
-    L14 = dt_string.encode() 
+    L14 = dt_string.encode()
     L15 = [ 0x0d, 0x0a ]
     L16 = [ 0x0a, 0x0a, 0x0a, 0x0a, 0x0a, 0x0a ]
 
@@ -60,3 +65,4 @@ def connect(username, password, time):
     ser.write(serial.to_bytes(L16))
     ser.write(serial.to_bytes(L17))
     ser.close()
+
